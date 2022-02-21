@@ -10,10 +10,24 @@
  * @param {TreeNode} root
  * @return {number[]}
  */
- var postorderTraversal = function(root, res=[]) {
+// 递归
+var postorderTraversal = function(root, res=[]) {
     if (!root) return res;
     postorderTraversal(root.left, res);
     postorderTraversal(root.right, res);
     res.push(root.val);
     return res;
 };  
+
+var postorderTraversal = function(root, res=[]) {
+    if (!root) return res;
+    const stack = [root];
+    let cur = null;
+    while (stack.length) {
+        cur = stack.pop();
+        cur.left && stack.push(cur.left);
+        cur.right && stack.push(cur.right);
+        res.push(cur.val);
+    }
+    return res.reverse();
+}
