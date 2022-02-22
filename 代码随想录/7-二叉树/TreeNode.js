@@ -5,3 +5,5 @@ function TreeNode(val, left, right) {
 }
 
 export default TreeNode;
+
+let input = [3,9,20,null,null,15,7];
