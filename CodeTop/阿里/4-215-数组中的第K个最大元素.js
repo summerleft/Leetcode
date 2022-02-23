@@ -55,7 +55,7 @@ let qsort = function(nums, left, right, k) {
     if (pivot < nums.length - k) {
         return qsort(nums, pivot + 1, right, k);
     } else {
-        return qsort(nums, 0, pivot - 1, k);
+        return qsort(nums, left, pivot - 1, k);
     }
  
 }
