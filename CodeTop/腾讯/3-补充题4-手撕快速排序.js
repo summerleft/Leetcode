@@ -2,34 +2,30 @@
  * @param {number[]} nums
  * @return {number[]}
  */
-// 填坑法
 var sortArray = function(nums) {
     let partition = function(nums, start, end) {
         let pivot = nums[start];
-        let left = start;
-        let right = end;
-        while (left < right) {
-            while (left < right && nums[right] >= pivot) {
-                right--;
+        while (start < end) {
+            while (start < end && pivot <= nums[end]) {
+                end--;
             }
-            nums[left] = nums[right];
-            while (left < right && nums[left] <= pivot) {
-                left++;
+            nums[start] = nums[end];
+            while (start < end && nums[start] <= pivot) {
+                start++;
             }
-            nums[right] = nums[left];
+            nums[end] = nums[start];
+            nums[start] = pivot;  
         }
-        nums[left] = pivot;
-        return left;
+        return start;
     }
 
     let qsort = function(nums, start, end) {
         if (start >= end) return;
         let pivot = partition(nums, start, end);
-        qsort(nums, 0, pivot - 1);
+        qsort(nums, start, pivot - 1);
         qsort(nums, pivot + 1, end);
     }
+
     qsort(nums, 0, nums.length - 1);
     return nums;
 };
-
-// 顺序遍历法
