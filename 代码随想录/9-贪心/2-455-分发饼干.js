@@ -3,25 +3,19 @@
  * @param {number[]} s
  * @return {number}
  */
- var findContentChildren = function(g, s) {
-    g = g.sort((a, b) => b - a);
-    s = s.sort((a ,b) => b - a);
-    console.log(g);
-    console.log(s);
-    let count = 0;
-    let curG = 0, curS = 0;
-    while (curG < g.length && curS < s.length) {
-        console.log([curS, curG])
-        if (s[curS] >= g[curG]) {
-            count++;
-            curG++;
-            curS++;
+var findContentChildren = function(g, s) {
+    let p1 = 0, p2 = 0;
+    g.sort((a, b) => a - b);
+    s.sort((a, b) => a - b);
+    let result = 0;
+    while (p1 < g.length && p2 < s.length) {
+        if (s[p2] >= g[p1]) {
+            result++;
+            p1++;
+            p2++;
         } else {
-            curG++;
+            p2++;
         }
-        
     }
-    return count;
+    return result;
 };
-
-findContentChildren([1,2,3], [1,1])

@@ -28,3 +28,23 @@ var largestSumAfterKNegations = function(nums, k) {
         return pre + cur;
     })
 };
+
+/**
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {number}
+ */
+ var largestSumAfterKNegations = function(nums, k) {
+    nums.sort((a, b) => Math.abs(b) - Math.abs(a));
+    for (let i = 0; i < nums.length && k > 0; i++) {
+        if (nums[i] < 0) {
+            nums[i] = -nums[i];
+            k--;
+        }
+    }
+    while (k > 0) {
+        nums[nums.length - 1] = -nums[nums.length - 1];
+        k--;
+    }
+    return nums.reduce((pre, cur) => pre + cur);
+};

@@ -15,3 +15,20 @@
     }
     return res;
 };
+
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+ var maxSubArray = function(nums) {
+    let result = Number.MIN_SAFE_INTEGER;
+    let cur = 0;
+    for (let num of nums) {
+        cur += num;
+        result = Math.max(result, cur);
+        if (cur < 0) {
+            cur = 0;
+        }
+    }
+    return result;
+};
