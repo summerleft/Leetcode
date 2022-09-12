@@ -6,9 +6,7 @@
     if (intervals.length === 1) return intervals;
     intervals.sort((a, b) => a[0] - b[0]);
     return intervals.reduce((pre, cur) => {
-        console.log(pre, cur);
         const lastInterval = pre[pre.length - 1];
-        console.log(lastInterval, cur);
         const left1 = lastInterval[0],
               right1 = lastInterval[1],
               left2 = cur[0],
@@ -27,6 +25,3 @@
         }
     }, [intervals[0]]);
 };
-
-const input = [[1, 4], [2, 3]];
-console.log(merge(input));
