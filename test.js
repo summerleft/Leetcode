@@ -1,32 +1,16 @@
-/**
- * @param {number[][]} intervals
- * @return {number[][]}
- */
- var merge = function(intervals) {
-    if (intervals.length === 1) return intervals;
-    intervals.sort((a, b) => a[0] - b[0]);
-    return intervals.reduce((pre, cur) => {
-        console.log(pre, cur);
-        const lastInterval = pre[pre.length - 1];
-        console.log(lastInterval, cur);
-        const left1 = lastInterval[0],
-              right1 = lastInterval[1],
-              left2 = cur[0],
-              right2 = cur[1];
-        if (left2 <= right1) {
-            if (right2 <= right1) {
-                return pre;
-            } else {
-                pre.pop();
-                pre.push([left1, right2]);
-                return pre;
-            }
-        } else {
-            pre.push(cur);
-            return pre;
-        }
-    }, [intervals[0]]);
-};
-
-const input = [[1, 4], [2, 3]];
-console.log(merge(input));
+const n = parseInt(readline());
+let hp = readline().split(" ");
+hp = hp.map(item => parseInt(item));
+let mp = 0;
+for (let i = 0; i < n - 2; i++) {
+    while (hp[i] >= 1 && hp[i + 1] >= 2 && hp[i + 2] >= 3) {
+        mp = mp + 5;
+        hp[i] = hp[i] - 1;
+        hp[i + 1] = hp[i + 1] - 2;
+        hp[i + 2] = hp[i + 2] - 3;
+    }
+}
+hp.forEach((item) => {
+    mp = mp + item;
+})
+console.log(mp);

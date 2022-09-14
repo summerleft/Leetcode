@@ -21,8 +21,9 @@ let partition = function(arr, left, right) {
         }
         arr[right] = arr[left];
     }
-
     arr[left] = pivot;
+    console.log(arr);
+
     return left;
 }
 
